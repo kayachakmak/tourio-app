@@ -1,17 +1,17 @@
 import dbConnect from "../../../../db/connect";
 import Place from "../../../../db/models/place";
+import Comment from "../../../../db/models/comment";
 
 export default async function handler(request, response) {
   const { id } = request.query;
+  await dbConnect();
 
   if (!id) {
     return;
   }
 
-  await dbConnect();
   if (request.method === "GET") {
     const place = await Place.findById(id).populate("comments");
-    console.log("the place", place);
     if (!place) {
       return response.status(404).json({ status: "Not Found" });
     }
