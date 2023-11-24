@@ -21,6 +21,10 @@ export default async function handler(request, response) {
       $set: request.body,
     });
     response.status(200).json({ status: `Place ${id} updated!` });
+  } else if (request.method === "DELETE") {
+    console.log("id: ", id);
+    await Place.findByIdAndDelete(id);
+    response.status(200).json({ status: `Place ${id} successfully deleted.` });
   }
 
   //   const place = db_places.find((place) => place._id.$oid === id);
