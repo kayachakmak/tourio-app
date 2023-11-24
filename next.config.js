@@ -14,6 +14,7 @@ const nextConfig = {
     return config;
   },
   images: {
+    domains: ["www.google.com"],
     remotePatterns: [
       {
         protocol: "https",
