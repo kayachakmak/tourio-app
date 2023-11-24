@@ -43,7 +43,7 @@ export default function DetailsPage() {
     });
     router.push("/");
   }
-
+  const { place, comments } = data;
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
@@ -51,7 +51,7 @@ export default function DetailsPage() {
       </Link>
       <ImageContainer>
         <StyledImage
-          src={data.image}
+          src={place.image}
           priority
           fill
           sizes="(max-width: 768px) 100vw,
@@ -61,12 +61,12 @@ export default function DetailsPage() {
         />
       </ImageContainer>
       <h2>
-        {data.name}, {data.location}
+        {place.name}, {place.location}
       </h2>
-      <Link href={data.mapURL} passHref legacyBehavior>
+      <Link href={place.mapURL} passHref legacyBehavior>
         <StyledLocationLink>Location on Google Maps</StyledLocationLink>
       </Link>
-      <p>{data.description}</p>
+      <p>{place.description}</p>
       <ButtonContainer>
         <Link href={`/places/${id}/edit`} passHref legacyBehavior>
           <StyledLink>Edit</StyledLink>
@@ -75,7 +75,7 @@ export default function DetailsPage() {
           Delete
         </StyledButton>
       </ButtonContainer>
-      <Comments locationName={data.name} comments={data.comments} />
+      <Comments locationName={place.name} comments={comments} />
     </>
   );
 }
