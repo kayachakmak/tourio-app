@@ -14,11 +14,15 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ["www.google.com"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "**",
+        port: "",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
         port: "",
       },
     ],
