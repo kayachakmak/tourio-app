@@ -27,15 +27,21 @@ export default function Comments({ locationName, comments }) {
     const data = Object.fromEntries(formData);
     data.placeID = id;
 
-    const response = await fetch("/api/comments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await fetch("/api/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (response.ok) mutate();
+      if (response.ok) {
+        mutate(`/api/places/${id}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

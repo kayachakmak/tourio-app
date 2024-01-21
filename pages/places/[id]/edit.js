@@ -23,6 +23,7 @@ export default function EditPage() {
     }
     router.push("/");
   }
+  console.log("place", place);
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
@@ -32,7 +33,11 @@ export default function EditPage() {
       <Link href={`/places/${id}`} passHref legacyBehavior>
         <StyledLink justifySelf="start">back</StyledLink>
       </Link>
-      <Form onSubmit={editPlace} formName={"edit-place"} defaultData={place} />
+      <Form
+        onSubmit={editPlace}
+        formName={"edit-place"}
+        defaultData={place.place}
+      />
     </>
   );
 }
